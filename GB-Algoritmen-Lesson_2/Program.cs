@@ -28,10 +28,10 @@ namespace GB_Algoritmen_Lesson_2
             {
                 WriteLine("Введите номер интересующей вас задачи:" + Environment.NewLine +
                     "1.-Реализовать функцию перевода чисел из десятичной системы в двоичную, используя рекурсию." + Environment.NewLine +
-                    "  -Реализовать функцию возведения числа a в степень b: " + Environment.NewLine +
-                    "2.   a.Без рекурсии." + Environment.NewLine +
-                    "3.   b.Рекурсивно." + Environment.NewLine +
-                    "4.   c.*Рекурсивно, используя свойство чётности степени." + Environment.NewLine +
+                    "2.-Реализовать функцию возведения числа a в степень b: " + Environment.NewLine +
+                    "     a.Без рекурсии." + Environment.NewLine +
+                    "     b.Рекурсивно." + Environment.NewLine +
+                    "     c.*Рекурсивно, используя свойство чётности степени." + Environment.NewLine +
                     "  -**Исполнитель «Калькулятор» преобразует целое число, записанное на экране.У исполнителя две команды, каждой присвоен номер: " + Environment.NewLine +
                     "      1.Прибавь 1." + Environment.NewLine +
                     "      2.Умножь на 2." + Environment.NewLine +
@@ -84,28 +84,30 @@ namespace GB_Algoritmen_Lesson_2
         {
             var number = int.Parse((new Questions()).Question<int>("Введите число:", new HashSet<char>() { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }, true));
             var degree = int.Parse((new Questions()).Question<int>("Введите степень:", new HashSet<char>() { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }, true));
-            WriteLine($" {ExponentNotRecuresion(number, degree)}");
+            WriteLine($"Без рекурси: {ExponentNotRecuresion(number, degree)}");
+            WriteLine($"С рекурсией: {ExponentNotRecuresion(number, degree)}");
         }
 
         private string ExponentNotRecuresion(int number, int degree)
         {
             var n = number;
-            var d = 1;
-            while(true)
+            while (degree >= 2)
             {
-                d = d + 2;
-                if (degree < d) break;
-                number = number * number;
-                degree -= d;
-            }             
-         
-            while(degree > 0)
-            {
-                number = number * n;
+                number *= n;
                 degree--;
             }
 
             return number.ToString();
+        }
+
+        private string ExponentRecuresion(int number, int degree) => Recuresion(number, number, degree);
+        
+        private string Recuresion(int number1, int number2, int degree)
+        {
+            number2 = number2 * number1;
+            degree--;
+            Recuresion(number1, number2, degree);
+            return number2.ToString();
         }
     }
 }
