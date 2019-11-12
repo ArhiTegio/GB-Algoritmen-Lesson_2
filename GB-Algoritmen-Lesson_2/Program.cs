@@ -134,40 +134,39 @@ namespace GB_Algoritmen_Lesson_2
     {
         public override void Work()
         {
-            WriteLine($"С использованием массива: { Massiv(20) }");
+            WriteLine($"С использованием массива: { Massiv(3, 20) }");
             int t = 0;
-            WriteLine($"С использованием рекурсии: { Recuresion(20, ref t) }");
+            WriteLine($"С использованием рекурсии: { Recuresion(3, 20, ref t) }");
         }
 
-        private string Massiv(int n)
+        private string Massiv(int pos, int n)
         {
-            //var mass = new HashSet<int[]>();
-            //for (int i = 0; i< n; ++i)
-            //{
-            //    for (int j = 0; j < )
-            //}
-            
-            return "";
-        }
+            var mass = new int[n+1];
+            mass[mass.Length - 1] = 1;
 
-        //Func<IEnumerable<int>, IEnumerable<IEnumerable<int>>> getAllSubsets = xs =>
-        //    (xs == null || !xs.Any()) ? Enumerable.Empty<IEnumerable<int>>()
-        //:  xs.Skip(1).Any()
-        //? getAllSubsets(xs.Skip(1))
-        //        .SelectMany(ys => new [] { ys, xs.Take(1).Concat(ys) })
-        //    : new [] { Enumerable.Empty<int>(), xs.Take(1) };
-// Посмотри для задания 3а C# Исполнитель Калькулятор преобразует целое число, записанное на экране. У исполнителя две команды, каждой команде присвоен номер
-
-private string Recuresion(int n, ref int step)
-        {
-            if (n <= 0)
+            for (int i = n - 1; i >= pos; --i)
             {
-                if (n == 0) step++;
+                var m1 = i + 1;
+                var m2 = i * 2;
+                if (m1 <= n)
+                    mass[i] += mass[m1];
+                if (m2 <= n) 
+                    mass[i] += mass[m2];
+            }
+
+            return mass[pos].ToString();
+        }
+
+        private string Recuresion(int pos, int n, ref int step)
+        {
+            if (n <= pos + 1)
+            {
+                if (n == pos) step++;
             }
             else
             {
-                Recuresion(n - 1, ref step);
-                Recuresion(n / 2, ref step);
+                Recuresion(pos, n - 1, ref step);
+                Recuresion(pos, n / 2, ref step);
             }
             return step.ToString();
         }
