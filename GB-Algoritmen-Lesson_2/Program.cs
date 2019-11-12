@@ -141,21 +141,22 @@ namespace GB_Algoritmen_Lesson_2
 
         private string Massiv(int n)
         {
-            var mass = new HashSet<int[]>();
-            for (int i = 0; i< n; ++i)
-            {
-                for (int j = 0; j < )
-            }
+            //var mass = new HashSet<int[]>();
+            //for (int i = 0; i< n; ++i)
+            //{
+            //    for (int j = 0; j < )
+            //}
             
             return "";
         }
 
-        Func<IEnumerable<int>, IEnumerable<IEnumerable<int>>> getAllSubsets = xs =>
-            (xs == null || !xs.Any()) ? Enumerable.Empty<IEnumerable<int>>()
-        :  xs.Skip(1).Any()
-        ? getAllSubsets(xs.Skip(1))
-                .SelectMany(ys => new [] { ys, xs.Take(1).Concat(ys) })
-            : new [] { Enumerable.Empty<int>(), xs.Take(1) };
+        //Func<IEnumerable<int>, IEnumerable<IEnumerable<int>>> getAllSubsets = xs =>
+        //    (xs == null || !xs.Any()) ? Enumerable.Empty<IEnumerable<int>>()
+        //:  xs.Skip(1).Any()
+        //? getAllSubsets(xs.Skip(1))
+        //        .SelectMany(ys => new [] { ys, xs.Take(1).Concat(ys) })
+        //    : new [] { Enumerable.Empty<int>(), xs.Take(1) };
+// Посмотри для задания 3а C# Исполнитель Калькулятор преобразует целое число, записанное на экране. У исполнителя две команды, каждой команде присвоен номер
 
 private string Recuresion(int n, ref int step)
         {
